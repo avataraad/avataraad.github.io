@@ -1,0 +1,478 @@
+:root {
+  --max-width: 1000px;
+  --header-height: 60px;
+}
+
+/* Imports Roboto Mono from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  background-color: #FAF9F6;
+  color: #333
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace; 
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+#top {
+  display: block;
+  height: 60px; /* Same as your header's height */
+  margin-top: -60px;
+  visibility: hidden;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #FAF9F6;
+  color: #333; /* This will apply to the text color */
+  padding: 10px 0;
+  z-index: 100; /* This ensures the header stays on top of other elements when scrolling */
+  max-width: calc(var(--max-width) + 100px);
+  margin: 0 auto;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  height: var(--header-height);
+}
+
+header.sticky {
+  border-bottom: 1px solid #333;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px; /* Adjusts space between the list items */
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  color: #333; /* Color of the links, you can choose any */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #ddd; /* Color of the links when hovered, you can choose any */
+}
+
+nav img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+#about {
+  padding-top: 100px;
+  margin-top: 60px;
+}
+
+.section h2 {
+  text-align: center;
+  font-size: 2em;
+}
+
+.section h1 {
+  text-align: center;
+  font-size: 3em;
+}
+
+section {
+  padding-top: calc(30px + var(--header-height)); /* Adjust this value as needed */
+  padding-right: 50px;
+  padding-left: 50px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between; /* Adjusts the space between the text and image */
+  align-items: center; /* Aligns the text and image to the top */
+}
+
+.about-content p {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.about-text {
+  flex: 2; /* Takes up 2/3 of the space */
+}
+
+.about-image {
+  flex: 1; /* Takes up 1/3 of the space */
+  padding-left: 50px;
+  max-width: 300px;
+  min-width: 200px;
+}
+
+.about-image img {
+  width: 100%; /* Makes the image responsive */
+  border-radius: 100px 50px 100px 50px; /* You can adjust this to achieve the desired corner roundness */
+}
+
+.about-text, .about-image {
+  flex: 1 1 auto;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#certifications {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+}
+
+.certification-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.certification {
+  width: 200px; /* adjust as needed */
+  margin: 10px;
+}
+
+.certification img {
+  width: 70%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.certification h4 {
+  margin: 10px 0 0; /* adjust as needed */
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.certifier {
+  font-size: 0.7em;
+  margin-top: 5px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.certification a {
+  color: #333;
+  text-decoration: none;
+}
+
+.certification a:hover {
+    color: #333; /* Or whichever color you prefer when hovering */
+}
+
+.img-status {
+  position: relative;
+}
+
+.status {
+  position: absolute;
+  top: 127.5px;
+  right: 52.5px;
+}
+
+.status-complete {
+  background-color: green;
+  border-radius: 15px;
+  padding: 2px 5px;
+  min-width: 80px;
+}
+
+.status-progress {
+  background-color: #c18a00;
+  border-radius: 15px;
+  padding: 2px 5px;
+  min-width: 80px;
+}
+
+.status p {
+  font-size: 11px;
+  color: white;
+  margin: 3px;
+  text-align: center;
+}
+
+.blog-container {
+  display: block;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-right: 40px;
+}
+
+.blog-post-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+  padding: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-summary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5; /* light grey, adjust to fit your site's color scheme */
+}
+
+.blog-post-summary h3 {
+  margin-bottom: 10px;
+}
+
+#projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.project {
+  flex: 0 1 calc(33.33% - 40px); /* 33.33% so that 3 items fit per row. We subtract 40px to account for gaps between items */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px; /* Adjust to fit your design */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff; /* Set your preferred color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  text-decoration: none;
+  color: #333;
+
+}
+
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background-color: #f5f5f5; /* Change color on hover */
+}
+
+.project img {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures the image covers the whole area */
+}
+
+.project h3 {
+  font-size: 20px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    width: 0; /* Starts from 0 */
+    background-color: rgba(211, 211, 211, 0.8);
+    position: fixed;
+    right: 0;
+    top: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.5s ease-in-out; /* Transitions width instead of transform */
+    overflow: hidden; /* Hides the overflowing content */
+    border-radius: 50px 0 0 50px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+
+  .nav-links.show {
+    width: 150px; /* Extends to 200px when .show is added */
+  }
+}
+
+@media (max-width: 900px) { /* Adjust this value as needed */
+  .about-content {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 38em) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .project {
+    flex: 0 1 calc(50% - 40px); /* Takes up 50% of the width on medium screens */
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project {
+    flex: 0 1 100%; /* Takes up 100% of the width on small screens */
+    max-width: 300px;
+    min-width: 200px;
+  }
+}
+
+/* Do I want to do this or should I cut down what one can see in a mobile view so that everything fits into a page? */
+/* @media screen and (max-width: 768px) {
+  section {
+    scroll-snap-align: none;
+  }
+}*/
+
+footer {
+  background-color: #333; /* change as per your preference */
+  color: #fff; /* change as per your preference */
+  padding: 20px 0;
+  text-align: center;
+}
+
+.contact-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.contact-option i {
+  margin-right: 10px;
+}
+
+.contact-option a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#contact {
+  height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.gif-frame {
+  padding-top: 30px; /* adjust the padding value as needed */
+  padding-bottom: 40px;
+}
+
+.read-more h3 a {
+  text-decoration: none;
+  color: #333;
+}
+
+.read-more {
+  text-align: center;
+}
+
+.read-more a:hover {
+  color: #ddd;
+}
+
+main {
+  padding-top: calc(30px + var(--header-height)); /* Adjust this value as needed */
+  padding-right: 50px;
+  padding-left: 50px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+  scroll-snap-align: start;
+}
+
+.blog-shell {
+  padding: 20px; /* Adjust padding as needed */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Adjust box-shadow as needed */
+  margin-bottom: 20px; /* Adjust margin as needed */
+  background-color: white; /* Adjust background color as needed */
+  border-radius: 15px; /* Optional: if you want rounded corners */
+}
+
+.blog-header {
+  text-align: center;
+  font-size: 3em;
+}
+
+.blog-post-title {
+  margin-bottom: 0.5em;
+}
+
+.blog-post-subtitle {
+  margin-top: 0.5em;
+}
