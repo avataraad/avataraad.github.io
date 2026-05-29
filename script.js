@@ -1,28 +1,42 @@
-window.addEventListener('scroll', function() {
-    var header = document.querySelector('header');
-    header.classList.toggle('sticky', window.scrollY > 0);
-});
+// ──────────────────────────────────────────────────────────────
+// Raad Beirouti — personal site
+// Theme toggle. Pre-paint init is inline in <head>; this handles
+// interaction + responding to OS preference changes.
+// ──────────────────────────────────────────────────────────────
 
-let hamburger = document.querySelector('#hamburger');
-let navLinks = document.querySelector('#nav-links');
-let navItems = document.querySelectorAll('.nav-links li');
+(function () {
+  'use strict';
 
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-});
+  const STORAGE_KEY = 'rb-theme';
+  const root = document.documentElement;
+  const toggle = document.querySelector('.theme-toggle');
 
-navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    navLinks.classList.remove('show');
-  });
-});
-
-window.addEventListener("load", (event) => {
-  const hash = window.location.hash;
-  if (hash) {
-    const targetElement = document.querySelector(hash);
-    if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth' });
+  function setTheme(next, persist) {
+    root.setAttribute('data-theme', next);
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, next); } catch (_) { /* no-op */ }
     }
   }
-});
+
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      setTheme(current === 'light' ? 'dark' : 'light', true);
+    });
+  }
+
+  // Track OS preference, but only apply it when the user hasn't explicitly chosen.
+  const mql = window.matchMedia('(prefers-color-scheme: dark)');
+  const onMediaChange = (e) => {
+    let stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (_) { /* no-op */ }
+    if (stored !== 'light' && stored !== 'dark') {
+      setTheme(e.matches ? 'dark' : 'light', false);
+    }
+  };
+  if (typeof mql.addEventListener === 'function') {
+    mql.addEventListener('change', onMediaChange);
+  } else if (typeof mql.addListener === 'function') {
+    mql.addListener(onMediaChange);
+  }
+})();
